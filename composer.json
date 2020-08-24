@@ -1,0 +1,29 @@
+{
+    "name": "aliensdev/projet",
+    "description": "projet bakalam",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aliens-Dev",
+            "email": "merazganabil34@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\" : "AliensDev/"
+        },
+        "files": [
+            "helpers\\redirect.php",
+            "helpers\\session.php",
+            "helpers\\view.php",
+            "helpers\\routes.php"
+        ]
+    },
+    "require": {
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "psr/http-message": "^1.0",
+        "guzzlehttp/psr7": "^1.6",
+        "http-interop/response-sender": "^1.0"
+    }
+}
