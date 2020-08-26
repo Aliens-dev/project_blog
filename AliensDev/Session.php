@@ -10,7 +10,7 @@ class Session
     const FLASH_SESSION = 'flash_session';
 
     public function setAuthSession($arr) {
-        $_SESSION['auth_session'] = $arr;
+        $_SESSION[self::AUTH_SESSION] = $arr;
     }
 
     public function getAuthSession() {

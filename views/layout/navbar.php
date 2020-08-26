@@ -18,7 +18,7 @@
                         <a class="nav-link" href="/admin/users">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/articles">Articles</a>
+                        <a class="nav-link" href="/admin/articles">Articles</a>
                     </li>
                 <?php endif; ?>
 

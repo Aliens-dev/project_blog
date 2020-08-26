@@ -13,6 +13,7 @@ class Request
     public $type;
     public function __construct()
     {
+
         $this->request = ServerRequest::fromGlobals();
         $this->type = $this->request->getServerParams()['REQUEST_METHOD'];
         $this->getKeys();

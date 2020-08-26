@@ -36,9 +36,10 @@ class LoginController extends Controller
 
 
         if($email->isValid() && $password->isValid()) {
-            $user = App::getDB()->prepare("SELECT * from users WHERE email = ? AND password = ?",[$email->value,$password->value],User::class);
+            $password = hash("sha256",$password->value);
+            $user = App::getDB()->prepare("SELECT * from users WHERE email = ? AND password = ?",[$email->value,$password],User::class);
             if($user) {
-                session()->setAuthSession(['user' => $user]);
+                session()->setAuthSession(['user_id' => $user->id]);
                 return redirect('/admin');
             }else {
                 session()->setFlashMessages(['Username or Password wrong!']);

@@ -35,12 +35,21 @@ class Database
     public function prepare($query,$params,$class,$fetchOne = true)
     {
         $result = $this->getDb()->prepare($query);
-        $result->execute($params);
+        $executed = $result->execute($params);
         $result->setFetchMode(\PDO::FETCH_CLASS, $class);
+        if(is_null($fetchOne)) {
+            return $executed;
+        }
         if($fetchOne) {
             return $result->fetch();
         }
         return $result->fetchAll();
+    }
+
+    public function delete($table,$params) {
+        $result = $this->getDb()->prepare("DELETE FROM ". $table . " WHERE id =?");
+        $executed = $result->execute($params);
+        return $executed;
     }
 
     public function query($query, $class, $fetchOne = true)

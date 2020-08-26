@@ -38,7 +38,7 @@ class App
         $slug_parts = explode('/',$this->slug);
 
         foreach ($this->routes as $route) {
-            if($request_method == $route['type']) {
+            if(strtolower($request_method) == strtolower($route['type'])) {
                 if($route['route'] == $this->slug) {
                     array_push($filterRoutes, $route);
                     break;

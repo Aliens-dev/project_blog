@@ -65,4 +65,8 @@ class Controller
         }
     }
 
+    protected function json($data) {
+        echo json_encode($data);
+    }
+
 }
