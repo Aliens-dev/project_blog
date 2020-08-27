@@ -14,7 +14,6 @@ use function Sodium\compare;
 class Controller
 {
     const DR = DIRECTORY_SEPARATOR;
-    protected $auth = [];
 
     protected function request($key="") {
         $request = new Request();
@@ -41,17 +40,10 @@ class Controller
         require $view_path.'app.php';
     }
 
-    protected function auth($auth) {
-        $this->auth = $auth;
-    }
 
-    protected function checkAuth($method) {
-        foreach ($this->auth as $item) {
-            if($item  == $method) {
-                if(! session()->hasAuthSession()) {
-                    return redirect('/login');
-                }
-            }
+    protected function checkAuth() {
+        if(! session()->hasAuthSession()) {
+            return redirect('/login');
         }
     }
 

@@ -12,19 +12,15 @@ use app\Validator;
 class AdminArticlesController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->auth(['index']);
-    }
-
     public function index () {
-        $this->checkAuth('index');
+        $this->checkAuth();
         $articles = Article::all();
         return view('admin.articles.index',compact('articles'));
     }
 
     public function store()
     {
+        $this->checkAuth();
         // validate Title
         $title = new Validator('title', $this->request("title"));
         $body = new Validator('body', $this->request("body"));
@@ -53,13 +49,14 @@ class AdminArticlesController extends Controller
     }
     public function edit($id)
     {
-        $this->checkAuth('index');
+        $this->checkAuth();
         $article = Article::find([$id]);
         return view('admin.articles.edit', compact('article'));
     }
 
     public function update($id)
     {
+        $this->checkAuth();
         // validate Title
         $title = new Validator('title', $this->request("title"));
         $body = new Validator('body', $this->request("body"));
@@ -93,6 +90,7 @@ class AdminArticlesController extends Controller
     }
 
     public function destroy($id) {
+        $this->checkAuth();
         App::getDB()->delete("articles", [$id]);
         return redirect('/admin/articles');
     }

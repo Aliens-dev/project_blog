@@ -3,6 +3,6 @@
 
 use app\Session;
 
-function session() {
+    function session() {
         return new Session();
     }

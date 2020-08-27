@@ -11,35 +11,31 @@ use app\Validator;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->auth(['index']);
-    }
 
     public function dashboard()
     {
-        $this->checkAuth('index');
+        $this->checkAuth();
         $users = User::count();
         $articles = Article::count();
         return view('admin.dashboard', compact(['users', 'articles']));
     }
 
     public function index() {
-        $this->checkAuth('index');
+        $this->checkAuth();
         $users = User::all();
         return view('admin.index',compact('users'));
     }
 
     public function edit($id)
     {
-        $this->checkAuth('index');
+        $this->checkAuth();
         $user = User::find([$id]);
         return view('admin.edit',compact('user'));
     }
 
     public function store()
     {
-        $this->checkAuth('index');
+        $this->checkAuth();
         // validate Title
         $name = new Validator('name', $this->request("name"));
         $email = new Validator('email', $this->request("email"));
@@ -65,7 +61,7 @@ class AdminController extends Controller
 
     public function update($id)
     {
-        $this->checkAuth('index');
+        $this->checkAuth();
         $email = new Validator('email', $this->request("email"));
         $name = new Validator('name', $this->request("name"));
         $password = new Validator('password', $this->request("password"));
@@ -89,12 +85,12 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        $this->checkAuth('index');
+        $this->checkAuth();
         App::getDB()->delete("users", [$id]);
         return redirect('/admin/users');
     }
     public function logout() {
-        $this->checkAuth('index');
+        $this->checkAuth();
         session()->clearAuthSession();
         return redirect('/');
     }
