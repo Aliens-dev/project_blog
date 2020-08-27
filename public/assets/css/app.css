@@ -151,13 +151,16 @@
 .content {
     min-height: calc(100vh - 100px);
 }
+
 .article {
     display:flex;
     flex-direction: column;
+
 }
 .article .article-img {
     height:500px;
     margin:50px auto;
+    max-width: 100%;
 }
 .article .author {
     font-size: 18px;

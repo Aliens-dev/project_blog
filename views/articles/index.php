@@ -29,7 +29,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3 side">
                 <div class="mt-5">
                     <div>
                         <h5>Lastest posts </h5>

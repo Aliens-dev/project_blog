@@ -27,8 +27,14 @@ class Database
 
     private function getDb() {
         $config = Config::get('DB');
-        $pdo = new PDO('mysql:host='. $config['DB_HOST'] .';dbname='. $config['DB_NAME'], $config['DB_USER'], $config['DB_PASS']);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $pdo = null;
+        try {
+            $pdo = new PDO('mysql:host='. $config['DB_HOST'] .';dbname='. $config['DB_NAME'], $config['DB_USER'], $config['DB_PASS']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        }catch (\Exception $e) {
+            echo $e->getMessage();
+            die();
+        }
         return $pdo;
     }
 
