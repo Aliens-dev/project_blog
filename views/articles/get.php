@@ -21,6 +21,20 @@ $title = $article->title;
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <div class="mt-5">
+                    <div>
+                        <h5>Categories </h5>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($categories as $category): ?>
+                            <div class="col-12 mb-2">
+                                <a href="<?= $category->url() ?>">
+                                    <?= $category->name ?>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
             <div class="col-9">
                 <div class="row mt-5">
@@ -38,6 +52,11 @@ $title = $article->title;
                             <?= $article->body ?>
                         </p>
                     </div>
+                </div>
+                <div class="foot">
+                    <?php foreach ($article->categories() as $cat): ?>
+                        <a href="<?= $cat->url() ?>" class="badge"><?= $cat->name ?></a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

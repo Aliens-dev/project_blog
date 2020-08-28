@@ -65,6 +65,16 @@ $title = "Admin Page";
                     <input type="file" rows="10" name="image" >
                 </div>
                 <div class="form-group">
+                    <label for="categories">Categories</label>
+                    <div>
+                        <select id="categories" type="categories" multiple rows="10" name="categories[]">
+                            <?php foreach ($categories as $category): ?>
+                                <option <?php if(in_array($category, $article_categories)) echo "selected" ?> value="<?= $category->id ?>"> <?= $category->name ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <button class="btn btn-primary">Update</button>
                 </div>
             </form>

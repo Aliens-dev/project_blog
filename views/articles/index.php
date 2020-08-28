@@ -44,6 +44,20 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <div class="mt-5">
+                    <div>
+                        <h5>Categories </h5>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($categories as $category): ?>
+                            <div class="col-12 mb-2">
+                                <a href="<?= $category->url() ?>">
+                                    <?= $category->name ?>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
             <div class="col-9">
                 <div class="row mt-3">
@@ -65,7 +79,7 @@
                                         </a>
                                     </h2>
                                     <div class="author">
-                                        by <span><?= \app\DB\Models\User::find([$article->user_id])->name ?></span>
+                                        by <span class="badge"><?= \app\DB\Models\User::find([$article->user_id])->name ?></span>
                                     </div>
                                     <p class="my-card-text">
                                         <?= $article->excerpt ?>
@@ -73,6 +87,11 @@
                                     <a href="<?= $article->url() ?>" >
                                         See More
                                     </a>
+                                    <div class="foot">
+                                        <?php foreach ($article->categories() as $cat): ?>
+                                            <a class="badge" href="<?= $cat->url() ?>"><?= $cat->name ?></a>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

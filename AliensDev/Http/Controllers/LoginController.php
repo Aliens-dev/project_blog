@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->auth(['index', 'indexPost']);
+        $this->redirectIfAuthenticated();
     }
 
     public function index() {

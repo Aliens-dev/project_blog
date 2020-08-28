@@ -61,4 +61,10 @@ class Validator
     {
         return $this->invalid_messages;
     }
+
+
+    public function __toString()
+    {
+        return $this->value;
+    }
 }

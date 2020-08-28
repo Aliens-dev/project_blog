@@ -30,7 +30,7 @@ $title = "Admin Page";
                 </div>
                 <div class="v-card-body">
                     <span>Categories</span>
-                    <span>2140</span>
+                    <span><?= $categories->count ?></span>
                 </div>
             </a>
         </div>

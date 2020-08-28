@@ -4,12 +4,9 @@
 namespace app\Http\Controllers;
 
 use app\Config;
-use app\DB\Database;
 use app\Http\Request;
-use app\Session;
 use GuzzleHttp\Psr7\Response;
 use function Http\Response\send;
-use function Sodium\compare;
 
 class Controller
 {
@@ -47,13 +44,10 @@ class Controller
         }
     }
 
-    protected function redirectIfAuthenticated($method) {
-        foreach ($this->auth as $item) {
-            if($item  == $method) {
-                if(session()->hasAuthSession()) {
-                    return redirect('/admin');
-                }
-            }
+
+    protected function redirectIfAuthenticated() {
+        if(session()->hasAuthSession()) {
+            return redirect('/admin');
         }
     }
 

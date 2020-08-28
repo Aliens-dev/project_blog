@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/articles">Articles</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/categories">Categories</a>
+                    </li>
                 <?php endif; ?>
 
             </ul>

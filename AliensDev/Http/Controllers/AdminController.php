@@ -6,36 +6,39 @@ namespace app\Http\Controllers;
 
 use app\App;
 use app\DB\Models\Article;
+use app\DB\Models\Category;
 use app\DB\Models\User;
 use app\Validator;
 
 class AdminController extends Controller
 {
 
-    public function dashboard()
+    public function __construct()
     {
         $this->checkAuth();
+    }
+
+    public function dashboard()
+    {
         $users = User::count();
         $articles = Article::count();
-        return view('admin.dashboard', compact(['users', 'articles']));
+        $categories = Category::count();
+        return view('admin.dashboard', compact(['users', 'articles','categories']));
     }
 
     public function index() {
-        $this->checkAuth();
         $users = User::all();
         return view('admin.index',compact('users'));
     }
 
     public function edit($id)
     {
-        $this->checkAuth();
         $user = User::find([$id]);
         return view('admin.edit',compact('user'));
     }
 
     public function store()
     {
-        $this->checkAuth();
         // validate Title
         $name = new Validator('name', $this->request("name"));
         $email = new Validator('email', $this->request("email"));
@@ -47,8 +50,8 @@ class AdminController extends Controller
 
         if($email->isValid() && $password->isValid() && $name->isValid()) {
             $password = hash("sha256",$password->value);
-            $query = App::getDB()->prepare("INSERT INTO users(name,email,password) VALUES (?,?,?)",[$name->value,$email->value,$password],User::class,null);
-            if($query) {
+            $query = User::insert(['name','email','password'],[$name->value,$email->value,$password]);
+            if(! is_null($query)) {
                 session()->setFlashMessages(["Successfully Added"]);
             }else {
                 session()->setFlashMessages(["Failed to Added"]);
@@ -61,7 +64,6 @@ class AdminController extends Controller
 
     public function update($id)
     {
-        $this->checkAuth();
         $email = new Validator('email', $this->request("email"));
         $name = new Validator('name', $this->request("name"));
         $password = new Validator('password', $this->request("password"));
@@ -71,8 +73,8 @@ class AdminController extends Controller
         $password = $password->required();
         if($email->isValid() && $password->isValid() && $name->isValid()) {
             $password = hash("sha256",$password->value);
-            $query = App::getDB()->prepare("UPDATE users set name=?,email=?,password=? WHERE id=?",[$name->value,$email->value,$password,$id],User::class,null);
-            if($query) {
+            $query = User::update(['name','email','password'],[$name,$email,$password,$id]);
+            if(! is_null($query)) {
                 session()->setFlashMessages(["Successfully Updated"]);
             }else {
                 session()->setFlashMessages(["Failed to Update"]);
@@ -85,12 +87,10 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        $this->checkAuth();
-        App::getDB()->delete("users", [$id]);
+        User::delete($id);
         return redirect('/admin/users');
     }
     public function logout() {
-        $this->checkAuth();
         session()->clearAuthSession();
         return redirect('/');
     }
