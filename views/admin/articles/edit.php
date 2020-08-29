@@ -67,7 +67,7 @@ $title = "Admin Page";
                 <div class="form-group">
                     <label for="categories">Categories</label>
                     <div>
-                        <select id="categories" type="categories" multiple rows="10" name="categories[]">
+                        <select id="categories" class="form-control" type="categories" multiple rows="10" name="categories[]">
                             <?php foreach ($categories as $category): ?>
                                 <option <?php if(in_array($category, $article_categories)) echo "selected" ?> value="<?= $category->id ?>"> <?= $category->name ?></option>
                             <?php endforeach; ?>

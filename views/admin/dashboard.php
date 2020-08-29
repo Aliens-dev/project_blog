@@ -8,7 +8,7 @@ $title = "Admin Page";
         <div class="v-card-container">
             <a href="/admin/users" class="v-card">
                 <div class="icon">
-                    <i class="fa fa-flag-o"></i>
+                    <i class="fa fa-users"></i>
                 </div>
                 <div class="v-card-body">
                     <span>Users</span>
@@ -17,7 +17,7 @@ $title = "Admin Page";
             </a>
             <a href="/admin/articles" class="v-card">
                 <div class="icon">
-                    <i class="fa fa-flag-o"></i>
+                    <i class="fab fa-blogger"></i>
                 </div>
                 <div class="v-card-body">
                     <span>Articles</span>
@@ -26,7 +26,7 @@ $title = "Admin Page";
             </a>
             <a class="v-card">
                 <div class="icon">
-                    <i class="fa fa-flag-o"></i>
+                    <i class="fab fa-accusoft"></i>
                 </div>
                 <div class="v-card-body">
                     <span>Categories</span>

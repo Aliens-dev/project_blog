@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $cat = Category::find([$id]);
-        $categories = Category::all();
+        $categories = Category::limit();
         $articles = $cat->articles();
         $latest = Article::limit();
         return view('articles.category', compact(['articles','cat','categories','latest']));
