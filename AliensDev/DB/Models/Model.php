@@ -23,7 +23,7 @@ class Model
     public function insert($keys,$values) {
         $from = join(',', $keys);
         $count = count($values);
-        $str = $this->getCommas($count);
+        $str = self::getCommas($count);
         $query = "INSERT INTO ". static::$table . "(". $from .") VALUES (" . $str . ")";
         return App::getDB()->prepare($query, $values,get_called_class(),null);
     }
